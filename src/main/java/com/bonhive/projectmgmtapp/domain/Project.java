@@ -1,6 +1,9 @@
 package com.bonhive.projectmgmtapp.domain;
 
+import org.springframework.data.repository.NoRepositoryBean;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -9,6 +12,7 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "project name cannot be null or empty")
     private String projectName;
     private String projectShortName;
     private String description;
