@@ -6,13 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.naming.Binding;
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/project")
@@ -22,11 +20,26 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping
-    public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result){
-        if(result.hasErrors()){
-            return new ResponseEntity<String>("Inavlid project object",HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> createNewProject(@RequestBody Project project){
         projectService.saveOrUpdateProject(project);
         return new ResponseEntity<Project>(project, HttpStatus.CREATED);
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllProjects(){
+        List<Project> projectsList = projectService.getAllProjects();
+        return new ResponseEntity<List<Project>>(projectsList, HttpStatus.CREATED);
+    }
+    @GetMapping("/{projectCode}")
+    public ResponseEntity<Project> getByProjectCode(@PathVariable String projectCode){
+        Project project = projectService.findByProjectCode(projectCode);
+        return new ResponseEntity<Project>(project, HttpStatus.OK);
+    }
+    @DeleteMapping("/{projectCode}")
+    public ResponseEntity<?> deleteByProjectCode(@PathVariable String projectCode){
+        projectService.deleteByProjectCode(projectCode);
+        return new ResponseEntity<String>("Project with code: '"+projectCode+"' was deleted", HttpStatus.OK);
+    }
+
+
 }

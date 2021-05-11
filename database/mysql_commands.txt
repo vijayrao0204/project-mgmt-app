@@ -1,0 +1,17 @@
+
+mysql -u root -p
+
+mysql> show databases;
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+
+mysql> create DATABASE projectMgmt;

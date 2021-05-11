@@ -1,0 +1,97 @@
+inheritenace => Swift is a Car
+composition => Swift has a engine
+
+create engine object
+create wheels obects
+wire the engine and wheels to the Swift
+
+Engine engine = new Engine();
+
+class Car{
+	int n;
+	Engine engine;
+	List<Wheel> wheels;
+	Transmission transmission;
+}
+
+class Engine{
+	int numCylinders;
+	int cc;
+	float power;
+	
+	Engine(){
+		numCylinders = 4;
+		cc = 1200;
+		power = 5.8;
+	}
+	
+	Enginee(int numCylinders, int cc, float power){
+		this.numCylinders = numCylinders;
+		this.cc = cc;
+		this.power = power;
+	}
+	
+	public void setNumCylinders(int numCylinders){
+		this.numCylinders = numCylinders;
+	}
+	
+	public void setCC(int cc){
+		this.cc = cc;
+	}
+	
+	public void setPower(float power){
+		this.power = power;
+	}
+	
+}
+
+
+	
+class Wheel{
+	boolean isTubeless;
+	
+	Wheel(){
+		isTubeless = true;
+	}
+	
+	Wheel(boolean isTubeless){
+		this.isTubeless = isTubeless;
+	}
+	
+}
+class Swift extends Car{
+	
+	Swift(){
+		this.engine = new Enginee();
+		this.wheels = new ArrayList<Wheel>;
+	}
+	
+	Swift(Engine engine){
+		this.engine = engine;
+		this.wheels = new ArrayList<Wheel>;
+	}
+	
+	Swift(Engine engine, List<Wheel> wheels){
+		this.engine = engine;
+		this.wheels = wheels;
+	}
+}
+
+class Demo{
+	public static void main(String[] args){
+		Enginee engine = new Engine(6, 1500, 8.9);
+		List<Wheels> wheels = new ArrayList<Wheel>;
+		wheels.add(new Wheel());
+		wheels.add(new Wheel());
+		wheels.add(new Wheel());
+		wheels.add(new Wheel());
+		wheels.add(new Wheel());
+		wheels.add(new Wheel());
+		Car c = new Swift(engine, wheels);
+		
+		
+		
+	}
+}
+
+

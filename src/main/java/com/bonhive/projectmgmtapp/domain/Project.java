@@ -1,9 +1,11 @@
 package com.bonhive.projectmgmtapp.domain;
 
-import org.springframework.data.repository.NoRepositoryBean;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -13,10 +15,16 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "project name cannot be null or empty")
+    @NotNull
     private String projectName;
-    private String projectShortName;
+    @Size(min = 4, max = 5)
+    @Column(updatable = false, unique = true)
+    private String projectCode;
+    @NotBlank(message = "project description cannot be null or empty")
     private String description;
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private Date startDate;
+    @JsonFormat(pattern = "dd-mm-yyyy")
     private Date endDate;
 
     private Date createdAt;
@@ -41,12 +49,12 @@ public class Project {
         this.projectName = projectName;
     }
 
-    public String getProjectShortName() {
-        return projectShortName;
+    public String getProjectCode() {
+        return projectCode;
     }
 
-    public void setProjectShortName(String projectShortName) {
-        this.projectShortName = projectShortName;
+    public void setProjectCode(String projectShortName) {
+        this.projectCode = projectShortName;
     }
 
     public String getDescription() {

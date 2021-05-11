@@ -7,4 +7,6 @@ public interface ProjectRepository extends CrudRepository<Project, Long> {
 
     @Override
     Iterable<Project> findAllById(Iterable<Long> iterable);
+    Project findByProjectCode(String projectCode);
+
 }
