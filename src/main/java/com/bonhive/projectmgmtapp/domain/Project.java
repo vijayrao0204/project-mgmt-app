@@ -1,6 +1,10 @@
 package com.bonhive.projectmgmtapp.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+/*import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.MongoId;*/
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -9,11 +13,15 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
+//@Document
 public class Project {
 
     @Id
+    //@MongoId
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
+
+
     @NotBlank(message = "project name cannot be null or empty")
     @NotNull
     private String projectName;
@@ -33,13 +41,13 @@ public class Project {
     public Project(){
     }
 
-    public Long getId() {
+    /*public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
+    }*/
 
     public String getProjectName() {
         return projectName;

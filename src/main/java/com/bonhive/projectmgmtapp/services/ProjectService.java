@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/*
+ProjectService ps = new ProjectService();
+ProjectRespository pr = new MySQLProjectRepository();
+ps.setProjectRepository(pr);
+ */
 @Service
 public class ProjectService {
 
